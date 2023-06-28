@@ -135,4 +135,6 @@ function getData()
 }
 getData();
 
+include "../header/index.php";
 include "./manage-user.php";
+include "../footer/index.php";

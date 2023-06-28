@@ -120,4 +120,6 @@ function getData()
 
 getData();
 
+include "../header/index.php";
 include "./manage-nhienlieu.php";
+include "../footer/index.php";

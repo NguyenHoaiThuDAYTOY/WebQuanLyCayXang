@@ -153,4 +153,6 @@ if ($result) {
     }
 }
 
+include "../header/index.php";
 include "./manage-cayxang.php";
+include "../footer/index.php";

@@ -4,6 +4,7 @@
     ob_start();
     include "./signin.php";
     include "../connect.php";
+    //check đăng nhập
     function checkuser($tentaikhoan, $matkhau){
         $conn = connectdb();
         $sql = "SELECT * FROM taikhoan WHERE Pk_TaikhoanID='$tentaikhoan' AND sMatkhau='$matkhau'";

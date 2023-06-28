@@ -47,4 +47,6 @@ if ($result) {
     }
 }
 
+include "../header/index.php";
 include "./user-info.php";
+include "../footer/index.php";

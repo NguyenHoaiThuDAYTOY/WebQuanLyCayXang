@@ -12,20 +12,89 @@
 </head>
 
 <body>
-    <section>
+    <section class="mx-5 px-5">
+        
         <div class="container mx-5 px-5">
+            <div id="carouselExampleCaptions" class="carousel slide w-50 mx-auto mx-5">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner shadow-lg bg-body-tertiary rounded border-0 mt-5">
+                    <div class="carousel-item active">
+                    <img src="./img.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Giá xăng</h5>
+                        <?php
+                    //đổ dữ liệu 
+                    if(isset($giaxangs) && (count($giaxangs) > 0)){
+                        foreach($giaxangs as $giaxang){
+
+                    ?>
+                                <p><?php echo $giaxang['sTenNhienlieu'] ?>: <?php echo $giaxang['fGia'] ?>/<?php echo $giaxang['sDonvi'] ?></p>
+                                <?php
+                        }
+                    }
+                    ?>
+                    </div>
+                    </div>
+                    <div class="carousel-item">
+                    <img src="./img.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Giá dầu</h5>
+                        <?php
+                    //đổ dữ liệu 
+                    if(isset($giadaus) && (count($giadaus) > 0)){
+                        foreach($giadaus as $giadau){
+
+                    ?>
+                                <p><?php echo $giadau['sTenNhienlieu'] ?>: <?php echo $giadau['fGia'] ?>/<?php echo $giadau['sDonvi'] ?></p>
+                                <?php
+                        }
+                    }
+                    ?>
+                    </div>
+                    </div>
+                    <div class="carousel-item">
+                    <img src="./img.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Giá nhớt</h5>
+                        <?php
+                    //đổ dữ liệu 
+                    if(isset($gianhots) && (count($gianhots) > 0)){
+                        foreach($gianhots as $gianhot){
+
+                    ?>
+                                <p><?php echo $gianhot['sTenNhienlieu'] ?>: <?php echo $gianhot['fGia'] ?>/<?php echo $gianhot['sDonvi'] ?></p>
+                                <?php
+                        }
+                    }
+                    ?>
+                    </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
             <form action="./index.php" method="post">
                 <div class="row py-5 m-auto  justify-content-center">
                     <div class="col input-group mb-3">
                         <input name="loainhienlieu" id="loainhienlieu" type="hidden">
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="btnradio" value="xăng" id="xang" autocomplete="off" onchange="getLoaiNhienLieu()" onclick="getCheckedXang()">
+                            <input type="radio" class="btn-check" name="btnradio" value="xang" id="xang" autocomplete="off" onchange="getLoaiNhienLieu()" onclick="getCheckedXang()">
                             <label class="btn btn-outline-primary" for="xang">Còn xăng</label>
 
-                            <input type="radio" class="btn-check" name="btnradio" value="dầu" id="dau" autocomplete="off" onchange="getLoaiNhienLieu()" onclick="getCheckedDau()">
+                            <input type="radio" class="btn-check" name="btnradio" value="dau" id="dau" autocomplete="off" onchange="getLoaiNhienLieu()" onclick="getCheckedDau()">
                             <label class="btn btn-outline-primary" for="dau">Còn dầu</label>
 
-                            <input type="radio" class="btn-check" name="btnradio" value="nhớt" id="nhot" autocomplete="off" onchange="getLoaiNhienLieu()" onclick="getCheckedNhot()">
+                            <input type="radio" class="btn-check" name="btnradio" value="nhot" id="nhot" autocomplete="off" onchange="getLoaiNhienLieu()" onclick="getCheckedNhot()">
                             <label class="btn btn-outline-primary" for="nhot">Còn nhớt</label>
                         </div>
                     </div>
@@ -36,8 +105,6 @@
                     </div>
                 </div>
             </form>
-            <?php
-            ?>
             <div class="row">
                 <div class="row row-cols-1 row-cols-md-3 g-4 m-auto">
                 <?php
@@ -46,7 +113,7 @@
                 foreach($cayxangs as $cayxang){
 
             ?>
-                    <a href="" class="text-decoration-none text-dark">
+                    <a href="../detail/index.php?id=<?php echo $cayxang['iCayxangID'] ?>" class="text-decoration-none text-dark">
                         <div class="card pt-5 pb-3 shadow-lg p-3 mb-5 bg-body-tertiary rounded border-0 card-hover">
                             <div class="icons m-auto">
 
@@ -60,11 +127,6 @@
                             </div>
                             <div class="card-body px-4">
                                 <h4 class="card-title"><?php echo $cayxang['sDiachi']; ?></h4>
-                                <div class="d-flex justify-content-between pt-4">
-                                    <p class="card-text text-success">Còn xăng</p>
-                                    <p>Còn dầu</p>
-                                    <p>Còn nhớt</p>
-                                </div>
                             </div>
                         </div>
                     </a>
