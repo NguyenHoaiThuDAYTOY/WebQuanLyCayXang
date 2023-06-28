@@ -14,4 +14,20 @@
         }
         return $conn;
     }
-?>
+
+    function connectdb2(){
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "quanlycayxang";
+        
+        // Kết nối đến MySQL
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        
+        // Kiểm tra kết nối
+        if (!$conn) {
+            die("Kết nối thất bại: " . mysqli_connect_error());
+        }
+
+        return $conn;
+    }
