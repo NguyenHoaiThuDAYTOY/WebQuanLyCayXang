@@ -27,7 +27,7 @@
             header('location: ../home/index.php');
             exit();
         } if($quyen == 'admin') {
-            header('location: ../manager-user/index.php');
+            header('location: ../manage-user/index.php');
             exit();
         } else {
             echo "<script>alert('Thông tin đăng nhập không đúng');</script>";
