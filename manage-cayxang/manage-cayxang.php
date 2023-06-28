@@ -151,13 +151,13 @@
                 </div>
                 <div class="modal-body">
                     <form id="deleteAccountForm" method="post" action="">
-                        <input type="text" class="form-control d-none" id="tentaikhoan_xoa" name="tentaikhoan_xoa">
+                        <input type="text" class="form-control d-none" id="macayxang_xoa" name="macayxang_xoa">
                         <p>Bạn có chắc chắn muốn xóa tài khoản này?</p>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="submit" form="deleteAccountForm" name="xoataikhoan" class="btn btn-danger">Xóa</button>
+                    <button type="submit" form="deleteAccountForm" name="xoacayxang" class="btn btn-danger">Xóa</button>
                 </div>
             </div>
         </div>
@@ -221,8 +221,8 @@
             });
 
             $(".delete-button").click(function() {
-                var accountName = $(this).closest("tr").find(".tentaikhoan").text();
-                $("#tentaikhoan_xoa").val(accountName);
+                var accountName = $(this).closest("tr").find(".macayxang").text();
+                $("#macayxang_xoa").val(accountName);
             });
         });
     </script>

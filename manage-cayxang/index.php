@@ -68,12 +68,12 @@ if (isset($_POST['capnhat'])) {
     $cayxang = $_POST['cayxang_sua'];
     $diachi = $_POST['diachi_sua'];
 
-    $sql = "UPDATE cayxang
+    $sql1 = "UPDATE cayxang
             SET sDiachi = '$diachi'
-            WHERE Pk_CayxangID = '$cayxang';
-            DELETE FROM cayxang_nhienlieu WHERE iCayxangID = '{$_POST['cayxang_sua']}';
-            ";
+            WHERE Pk_CayxangID = '$cayxang'";
 
+    $sql2 = "DELETE FROM cayxang_nhienlieu WHERE iCayxangID = '{$_POST['cayxang_sua']}'";
+    $sql3 = "INSERT INTO cayxang_nhienlieu (iNhienlieuID, iCayxangID, iSoluong, isActive) VALUES ";    
     $unique = [];
     foreach ($_POST['nhienlieu'] as $key => $nl) {
         if (in_array($nl, $unique)) {
@@ -82,31 +82,24 @@ if (isset($_POST['capnhat'])) {
 
         $unique[] = $nl;
 
-        $sql .= "INSERT INTO cayxang_nhienlieu (iNhienlieuID, iCayxangID, iSoluong, isActive)
-        VALUES ($nl, {$_POST['cayxang_sua']}, {$_POST['soluong'][$key]}, 1);";
+        $sql3 .= "($nl, {$_POST['cayxang_sua']}, {$_POST['soluong'][$key]}, 1),";
     }
-
-    echo $sql;
 
     $connection = connectdb2();
-    if ($connection->query($sql) === TRUE) {
-        echo "<script>alert('Cập nhật tài khoản thành công')</script>";
-    } else {
-        echo "<script>Lỗi: " . $connection->error . " </script>";
-    }
+    $connection->query($sql1);
+    $connection->query($sql2);
+    $connection->query(substr_replace($sql3 ,"", -1));
 }
 
-if (isset($_POST['xoataikhoan'])) {
-    $deleteAccountName = $_POST['tentaikhoan_xoa'];
+if (isset($_POST['xoacayxang'])) {
+    $deleteCayxang = $_POST['macayxang_xoa'];
 
-    $sql = "DELETE FROM cayxang WHERE Pk_TaikhoanID = '$deleteAccountName'";
+    $sql1 = "DELETE FROM cayxang_nhienlieu WHERE iCayxangID = '$deleteCayxang'";
+    $sql2 = "DELETE FROM cayxang WHERE Pk_CayxangID = '$deleteCayxang'";
 
     $connection = connectdb2();
-    if ($connection->query($sql) === TRUE) {
-        echo "<script>alert('Xóa tài khoản thành công')</script>";
-    } else {
-        echo "<script>Lỗi: " . $connection->error . " </script>";
-    }
+    $connection->query($sql1);
+    $connection->query($sql2);
 }
 
 function getData()
